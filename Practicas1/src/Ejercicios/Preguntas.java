@@ -48,33 +48,34 @@ public class Preguntas {
 		return valorC;
 	}
 	
+	public void respuestas(int a, float b) {
+		if(a == b) System.out.println("Su respuesta fue correcta!");
+		else System.out.println("* Su respuesta fue incorrecta!");
+	}
+	
 	public void imprimirRespuesta(){
 		int cuenta = getCuenta();
 		if(cuenta == 1) {
 			float rta = suma(valorA, valorB);
-			if(respuesta == rta) System.out.println("Su respuesta fue correcta!");
-			else System.out.println("* Su respuesta fue incorrecta!");
+			respuestas(respuesta, rta);
 			System.out.println("* La suma es de: "+rta);
 		}
 		else {
 			if(cuenta == 2) {
 				float rta = resta(valorA, valorB);
-				if(respuesta == rta) System.out.println("Su respuesta fue correcta!");
-				else System.out.println("* Su respuesta fue incorrecta!");
+				respuestas(respuesta, rta);
 				System.out.println("* La resta es de: "+rta);
 			}
 			else {
 				if(cuenta == 3) {
 					float rta = multiplicacion(valorA, valorB);
-					if(respuesta == rta) System.out.println("Su respuesta fue correcta!");
-					else System.out.println("* Su respuesta fue incorrecta!");
+					respuestas(respuesta, rta);
 					System.out.println("* La multiplicacion es de: "+rta);
 				}
 				else {
 					if(cuenta == 4) {
 						float rta = division(valorA, valorB);
-						if(respuesta == rta) System.out.println("Su respuesta fue correcta!");
-						else System.out.println("* Su respuesta fue incorrecta!");
+						respuestas(respuesta, rta);
 						System.out.println("* La division es de: "+rta);
 					}
 				}
@@ -91,6 +92,5 @@ public class Preguntas {
 	}
 	public Preguntas() {
 		
-	}
-	
+	}	
 }

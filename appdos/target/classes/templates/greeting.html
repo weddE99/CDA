@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ingreso de nombre y usuario</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Ingreso Datos</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    	<p>Nombre: <input type="text" th:field="*{nameUser}" /></p>
+        <p>Contraseña: <input type="password" th:field="*{password}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

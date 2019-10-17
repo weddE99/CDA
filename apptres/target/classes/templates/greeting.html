@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculadora</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Ingreso Datos</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+		<p>Suma : <input type="text" size="3" th:field="*{n1}" /> + <input type="text" size="3" th:field="*{n2}"/ 
+		th:text="' =  ' + ${greeting.rtaS}"</p>
+		<p>Resta : <input type="text" size="3" th:field="*{n3}" /> - <input type="text" size="3" th:field="*{n4}"/ 
+		th:text="' =  ' + ${greeting.rtaR}"</p>
+		<p>Multiplicacion : <input type="text" size="3" th:field="*{n5}" /> * <input type="text" size="3" th:field="*{n6}"/ 
+		th:text="' =  ' + ${greeting.rtaM}"</p>
+		<p>Division : <input type="text" size="3" th:field="*{n7}" /> / <input type="text" size="3" th:field="*{n8}"/ 
+		th:text="' =  ' + ${greeting.rtaD}"</p>
+		
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

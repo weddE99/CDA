@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Egreso de nombre y apellido</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Egreso Datos</h1>
+    <p th:text="'Nombre del Usuario: ' + ${greeting.nameUser}" />
+    <p th:text="'Contraseña: ' + ${greeting.password}" />
+    <a href="/greeting">Submit another message</a>
+</body>
+</html>

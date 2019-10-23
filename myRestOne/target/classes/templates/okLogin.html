@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Datos recibidos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Egreso Datos</h1>
+    <p th:text="'Nombre del Usuario: ' + ${login.user}" />
+    <p th:text="'Contraseña: ' + ${login.pass}" />
+    <p>Ingrese a los <a href="/alumno">alumnos</a></p>
+    <p>Ingrese a los <a href="/curso">cursos</a></p>
+    <p>Ingrese a los <a href="/profesor">profesores</a></p>
+</body>
+</html>

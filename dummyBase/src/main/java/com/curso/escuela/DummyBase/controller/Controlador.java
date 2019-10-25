@@ -23,7 +23,6 @@ public class Controlador{
 	@PostMapping("/login")
     public String login(@ModelAttribute DummyService dummyService) {
         boolean flag = dummyService.getAtribute();
-        System.out.println(flag);
 		if(flag == true) return "okLogin";
 		else return "errorLogin";
     }

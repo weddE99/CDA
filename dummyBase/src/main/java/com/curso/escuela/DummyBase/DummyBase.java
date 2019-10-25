@@ -7,7 +7,7 @@ public class DummyBase {
 	
 	static {
 		map = new HashMap<String, String>();
-		map.put("AAA","AAA");
+		map.put("1234","Wilson");
 		map.put("BBB","BBB");
 		map.put("CCC","CCC");
 		map.put("DDD","DDD");

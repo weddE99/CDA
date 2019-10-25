@@ -21,6 +21,17 @@ public class DummyService {
 	}
 
 	public boolean getAtribute() {
-		return DummyBase.getMap().containsKey(pass) && DummyBase.getMap().containsValue(user);
+		
+		//return DummyBase.getMap().containsKey(this.pass) && DummyBase.getMap().containsValue(this.user);
+		
+		System.out.println(user+""+pass);
+		boolean flag = false;
+		if(DummyBase.getMap().containsKey(this.pass)) {
+			if(DummyBase.getMap().get(pass).equals(user)) {
+				flag = true;
+			}
+		}
+		else flag = false;
+		return flag;
 	}
 }

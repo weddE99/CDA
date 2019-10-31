@@ -21,9 +21,6 @@ public class DummyService {
 	}
 
 	public boolean getAtribute() {
-		
-		//return DummyBase.getMap().containsKey(this.pass) && DummyBase.getMap().containsValue(this.user);
-		
 		System.out.println(user+""+pass);
 		boolean flag = false;
 		if(DummyBase.getMap().containsKey(this.pass)) {

@@ -23,16 +23,21 @@ public class DummyService {
 	public int getAtribute() {
 		System.out.println(user+""+pass);
 		int flag = 0;
-		if(DummyBase.getMap().containsValue(this.user)){
-			if(DummyBase.getMap().)
-		}
+		
 		if(DummyBase.getMap().containsKey(this.pass)) {
 			if(DummyBase.getMap().get(pass).equals(user)) {
 				flag = 1;
 			}
 			else flag = 0;
 		}
-		else flag = 2;
+		else flag = 0;
+		
+		
+		if(!(DummyBase.getMap().containsValue(this.user))) {
+			System.out.println(":D");
+			flag = 2;
+		}
+
 		return flag;
 	}
 }

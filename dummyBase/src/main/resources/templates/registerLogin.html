@@ -1,0 +1,20 @@
+<!DOCTY
+<PE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registros</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Registro</h1>
+    <form action="#" th:action="@{/registerLogin}" th:object="${registerLogin}" method="post">
+		<p>
+		Usuario : <input type="text" size="6" th:field="*{user}" />
+		</p>
+		<p>
+		Contraseña : <input type="text" size="6" th:field="*{pass}" />
+		</p>
+		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form> 
+</body>
+</html>

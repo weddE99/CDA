@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.curso.escuela.DummyBase.DummyBase;
 import com.curso.escuela.DummyBase.DummyService;
 import com.curso.escuela.DummyBase.IngresosServices;
 
@@ -27,12 +28,23 @@ public class Controlador{
         return "ingresosServices";
     }
 	
+	@GetMapping("/registerLogin")
+    public String getUsuario(Model model3) {
+        model3.addAttribute("registerLogin", new DummyBase());
+        return "registerLogin";
+    }
+	
 	@PostMapping("/login")
     public String login(@ModelAttribute DummyService dummyService) {
         int flag = dummyService.getAtribute();
 		if(flag == 1) return "okLogin";
-		if(flag == 0) return "errorLogin";
 		else return "errorLogin";
+    }
+	
+	@PostMapping("/registerLogin")
+    public String login3(@ModelAttribute DummyBase registerLogin, String user, String pass) {
+		registerLogin.setMap(pass,user);
+		return "okRegister";
     }
 	
 	@PostMapping("/ingresosServices")

@@ -20,7 +20,9 @@ public class ControllerAlumno{
     }
 
     @PostMapping("/alumno")
-    public String createUser(@ModelAttribute Alumno alumno) {
+    public String createUser(@ModelAttribute Alumno alumno, String nombre, String apellido) {
+    	alumno.setNombre("Wilson");
+    	alumno.setApellido("Dabrowski");
         return "alumno";
     }
     

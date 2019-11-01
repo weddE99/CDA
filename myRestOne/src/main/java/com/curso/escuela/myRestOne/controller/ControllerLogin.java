@@ -26,11 +26,11 @@ public class ControllerLogin{
     
     @DeleteMapping("/login")
     public String deleteUser(@ModelAttribute Login login) {
-    	return "usuarios";
+    	return "login";
     }
     
     @PutMapping("/login")
     public String updateUser(@ModelAttribute Login login) {
-    	return "usuarios";
+    	return "login";
     }
 }

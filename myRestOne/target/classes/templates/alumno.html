@@ -5,6 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Esta en alumnos!'" />
+	<form action="#" th:action="@{/alumno}" th:object="${alumno}" method="post">
+    	<p th:text="'Esta en alumnos!'" />
+   		<p th:text="'Nombre: ' + ${alumno.nombre}" />
+   		<p th:text="'Apellido: ' + ${alumno.apellido}" />
+    	<p><input type="submit" value="Actualizar" /> <input type="reset" value="Resetear" /></p>
+	</form>
 </body>
 </html>

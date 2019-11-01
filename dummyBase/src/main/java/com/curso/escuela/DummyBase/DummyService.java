@@ -20,15 +20,19 @@ public class DummyService {
 		this.pass = pass;
 	}
 
-	public boolean getAtribute() {
+	public int getAtribute() {
 		System.out.println(user+""+pass);
-		boolean flag = false;
+		int flag = 0;
+		if(DummyBase.getMap().containsValue(this.user)){
+			if(DummyBase.getMap().)
+		}
 		if(DummyBase.getMap().containsKey(this.pass)) {
 			if(DummyBase.getMap().get(pass).equals(user)) {
-				flag = true;
+				flag = 1;
 			}
+			else flag = 0;
 		}
-		else flag = false;
+		else flag = 2;
 		return flag;
 	}
 }

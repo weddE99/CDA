@@ -29,8 +29,9 @@ public class Controlador{
 	
 	@PostMapping("/login")
     public String login(@ModelAttribute DummyService dummyService) {
-        boolean flag = dummyService.getAtribute();
-		if(flag == true) return "okLogin";
+        int flag = dummyService.getAtribute();
+		if(flag == 1) return "okLogin";
+		if(flag == 0) return "errorLogin";
 		else return "errorLogin";
     }
 	

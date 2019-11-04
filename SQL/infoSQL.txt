@@ -1,0 +1,334 @@
+package conexion;
+
+import javax.sql.DataSource;
+import org.apache.commons.dbcp.BasicDataSource;
+
+public class ConexionSQL {
+    public DataSource dataSource;
+
+    public String db = "controlDeStock";
+    public String url = "jdbc:mysql://localhost/"+db;
+    public String user = "root";
+    public String pass = "";
+
+    public ConexionSQL(){
+        inicializaDataSource();
+    }
+    
+    private void inicializaDataSource(){
+        BasicDataSource basicDataSource = new BasicDataSource();
+
+        basicDataSource.setDriverClassName("org.gjt.mm.mysql.Driver");
+        basicDataSource.setUsername(user);
+        basicDataSource.setPassword(pass);
+        basicDataSource.setUrl(url);
+        basicDataSource.setMaxActive(50);
+        dataSource = basicDataSource;
+    }
+}
+
+// "algunas solicitudes"
+
+public class Solicitudes {
+    Connection con = null;
+    ConexionSQL metodospool = new ConexionSQL();
+    Object[][] data;
+    String[] col;
+    String SSQL;
+    int error = 0;
+    
+    public void Visualizar(int n, String a, String b){
+        int i = 0;
+        
+        if(n == 0){
+            SSQL = "SELECT * FROM productos";
+        }
+        else{
+            if(n == 1){
+                SSQL = "SELECT * FROM productos WHERE Cantidad > 0";
+            }
+            else{
+                if(n == 2){
+                    SSQL = "SELECT * FROM productos WHERE Cantidad = 0";
+                }
+                else{
+                    if(n == 3){
+                        SSQL = "SELECT * FROM productos WHERE Producto = '"+b+"'";
+                    }
+                    else{
+                        if(n == 4){
+                            SSQL = "SELECT * FROM productos WHERE Código = '"+a+"'";
+                        }
+                        else{
+                            if(n == 5){
+                                SSQL = "SELECT * FROM productos WHERE Código = '"+a+"' && Producto = '"+b+"'";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+            try{
+                con = metodospool.dataSource.getConnection();
+                PreparedStatement lectura = con.prepareStatement(SSQL);
+                ResultSet leer = lectura.executeQuery();
+                
+                leer.last();
+                
+                ResultSetMetaData rsmd = leer.getMetaData();
+                int rowCount = leer.getRow();
+                int columnCount = leer.getMetaData().getColumnCount();
+                
+                data = new Object[rowCount][columnCount];
+                col = new String[columnCount];
+                
+                for(int aa = 0; aa < col.length; aa++){
+                    col[aa] = rsmd.getColumnName(aa+1);
+                }
+
+                leer.beforeFirst();
+                while(leer.next()){
+                    int j = 0;
+                        data[i][j++] = leer.getString(1);
+                        data[i][j++] = leer.getString(2);
+                        data[i][j++] = leer.getString(3);
+                        data[i][j++] = leer.getString(4);
+                        data[i][j++] = leer.getString(5);
+                        i++;
+                }
+                leer.beforeFirst();
+                lectura.close();
+            }
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n" + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }
+    } 
+    
+    public void Modificar(String codigo, String producto, String descripción, String proveedor, String cantidad){
+        error = 0;
+        int resultado;
+        Connection con = null;
+        String SSQL2 = "SELECT código FROM productos";
+        if(error != 1){
+            try {
+                error = 0;
+                con = metodospool.dataSource.getConnection();
+                PreparedStatement lectura = con.prepareStatement(SSQL2);
+                ResultSet leer = lectura.executeQuery();     
+           
+                while(leer.next()){
+                    String cod = leer.getString("código");
+
+                    if(codigo.equals(cod)){
+                        error = 1;
+                        
+                        JOptionPane.showMessageDialog(null, "ERROR: El codigo ya ha sido Registrado!!"
+                                 , "Inténtelo nuevamente", 
+                                 JOptionPane.ERROR_MESSAGE); 
+                    }
+                }
+                lectura.close();      
+                if(error == 0){  
+                String SSQL = "INSERT INTO productos (código, producto, descripción, proveedor, cantidad)"
+                    + " VALUES (?, ?, ?, ?, ?)";
+
+                try {
+                    con = metodospool.dataSource.getConnection();
+        
+                    PreparedStatement psql = con.prepareStatement(SSQL);
+                    psql.setString(1, codigo);
+                    psql.setString(2, producto);
+                    psql.setString(3, descripción);
+                    psql.setString(4, proveedor);
+                    psql.setString(5, cantidad);
+                    resultado = psql.executeUpdate();
+                    psql.close();
+                    
+                } 
+                catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n" 
+                            + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+                finally{
+                    try {
+                        if(con!=null){
+                            con.close();   
+                        } 
+                    }
+                    catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n" 
+                                + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                        JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
+                                  "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);       
+                }
+                else{
+                        JOptionPane.showMessageDialog(null, "ERROR: Los datos no se pudieron guardar"
+                                 , "Inténtelo nuevamente", JOptionPane.ERROR_MESSAGE); 
+                }
+            } 
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n" + e, 
+                        "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }
+            finally{
+                try {
+                    if(con!=null){
+                        con.close();  
+                    } 
+                }
+                catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n" + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+    
+    public void Actualizar(String codigo, String cantidad){
+        error = 0;
+        int resultado;
+        Connection con = null;
+        String SSQL2 = "SELECT código FROM productos";
+        if(error != 1){
+            try {
+                error = 1;
+                con = metodospool.dataSource.getConnection();
+                PreparedStatement lectura = con.prepareStatement(SSQL2);
+                ResultSet leer = lectura.executeQuery();     
+                
+                while(leer.next()){
+                    if(error != 0){
+                        String cod = leer.getString("código");
+
+                        if(codigo.equals(cod)){
+                            error = 0;
+                        }
+                        else{
+                            error = 1;
+                        }
+                    }
+                }
+                
+                lectura.close();     
+                
+                if(error == 1){
+                    JOptionPane.showMessageDialog(null, "ERROR: El codigo no ha sido Registrado!!"
+                                , "Inténtelo nuevamente", 
+                                JOptionPane.ERROR_MESSAGE); 
+                }
+                
+                if(error == 0){  
+                String SSQL = "UPDATE productos SET cantidad = ? "
+                        + "WHERE código = ?";
+
+                try {
+                    con = metodospool.dataSource.getConnection();
+        
+                    PreparedStatement psql = con.prepareStatement(SSQL);
+                    psql.setString(2, codigo);
+                    psql.setString(1, cantidad);
+                    resultado = psql.executeUpdate();
+                    psql.close();
+                    
+                } 
+                catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al intentar actualizar la información:\n" 
+                            + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+                finally{
+                    try {
+                        if(con!=null){
+                            con.close();   
+                        } 
+                    }
+                    catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n" 
+                                + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                        JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", 
+                                  "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);       
+                }
+                else{
+                        JOptionPane.showMessageDialog(null, "ERROR: Los datos no se pudieron guardar"
+                                 , "Inténtelo nuevamente", JOptionPane.ERROR_MESSAGE); 
+                }
+            } 
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n" + e, 
+                        "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }
+            finally{
+                try {
+                    if(con!=null){
+                        con.close();  
+                    } 
+                }
+                catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n" + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+    
+    public void Borrar(String codigo){
+        Connection con = null;
+        int resultado;
+        String SSQL = "DELETE FROM productos WHERE código = ?";
+        String SSQL2 = "SELECT código FROM productos";
+        
+        if(error != 1){
+            try {
+                error = 0;
+                con = metodospool.dataSource.getConnection();
+                PreparedStatement lectura = con.prepareStatement(SSQL2);
+                ResultSet leer = lectura.executeQuery();     
+                
+                while(leer.next()){
+                    String cod = leer.getString("código");
+
+                    if(codigo.equals(cod)){
+                        error = 0;
+                    }
+                    else{
+                        error = 1;
+                    }
+                }
+                lectura.close();     
+                
+                if(error == 1){
+                    JOptionPane.showMessageDialog(null, "ERROR: El codigo no ha sido Registrado!!"
+                                , "Inténtelo nuevamente", 
+                                JOptionPane.ERROR_MESSAGE); 
+                }
+                if(error == 0){
+                    con = metodospool.dataSource.getConnection();
+
+                    PreparedStatement psql = con.prepareStatement(SSQL);
+                    psql.setString(1,codigo);
+
+                    resultado = psql.executeUpdate();
+                    psql.close();
+                    
+                    JOptionPane.showMessageDialog(null, "Los datos se han borrado correctamente", 
+                                  "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE); 
+                }
+            }
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar almacenar la información:\n" + e, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+            }
+            finally{
+                try {
+                    if(con!=null){
+                        con.close();
+                    }
+                }
+                catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexión:\n"
+                        + ex, "Error en la operación", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+}

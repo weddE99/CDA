@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Datos recibidos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Bienvenido! </h1>
+    <p th:text="'Nombre del Usuario: ' + ${user}" />
+    <p th:text="'Contraseña: ' + ${pass}" />
+    
+    <form action="#" th:action="@{/}" th:object="${dummyService}" method="post">
+    	<p th:text="'Nombre del Usuario: ' + ${user}" />
+    	<p th:text="'Contraseña: ' + ${pass}" />
+        <p><input type="submit" value="Mandar" /> <input type="reset" value="Resetear" /></p>
+    </form>
+    
+    <p>Ingrese al menu <a href="/dummyBase-0.0.1-SNAPSHOT/okLogin">aqui</a></p>
+</body>
+</html>

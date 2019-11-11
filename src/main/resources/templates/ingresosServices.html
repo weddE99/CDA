@@ -1,0 +1,25 @@
+<!DOCTY
+<PE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IngresosBrutos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Ingresos Brutos</h1>
+    <form action="#" th:action="@{/ingresosServices}" th:object="${ingresosServices}" method="post">
+		<p
+		>Monto : <input type="text" size="6" th:field="*{monto}" />$  el IVA es 21% ==> Monto con IVA: 
+		<input type="text" size="6" th:field="${ingresosServices.montoIva}"} />$
+		</p>
+		<p>
+		Sueldo : <input type="text" size="6" th:field="*{sueldo}" />$  Monto descontado:
+		<input type="text" size="6" th:field="${ingresosServices.pIngresosBrutos}" />$  ==> Monto con Ingresos Brutos:
+		<input type="text" size="6" th:field="${ingresosServices.ingresosBrutos}"} />$ 
+		</p>
+		
+		<p>Vuelva al menu <a href="/dummyBase-0.0.1-SNAPSHOT/okLogin">aqui</a></p>
+		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form> 
+</body>
+</html>

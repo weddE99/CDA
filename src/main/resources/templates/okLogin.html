@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Datos recibidos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Bienvenido! </h1>
+    <p th:text="'Nombre del Usuario: ' + ${dummyService.user}" />
+    <p th:text="'Contraseña: ' + ${dummyService.pass}" />
+    
+    <p>Ingrese al registro <a href="/dummyBase-0.0.1-SNAPSHOT/registerLogin">aqui</a></p>
+    <p>Ingrese al calculo de servicios <a href="/dummyBase-0.0.1-SNAPSHOT/ingresosServices">aqui</a></p>
+</body>
+</html>

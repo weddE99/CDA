@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Busqueda</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Busqueda</h1>
+    <form action="#" th:action="@{/buscar}" th:object="${automotor}" method="post">
+    	<p>Modelo: <input type="text" th:field="*{modelo}" /></p>
+    	<p>Precio: <input type="text" th:field="*{precio}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

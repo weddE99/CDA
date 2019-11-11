@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cargado de vehiculos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/cargar}" th:object="${automotor}" method="post">
+    	<p>Modelo: <input type="text" th:field="*{modelo}" /></p>
+        <p>Anio: <input type="text" th:field="*{anio}" /></p>
+        <p>Precio: <input type="text" th:field="*{precio}" /></p>
+        <p>Stock: <input type="text" th:field="*{stock}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

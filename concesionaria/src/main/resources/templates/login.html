@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Sistema Login Concesionaria.</h1>
+    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+    	<p>Ingrese user: <input type="text" th:field="*{user}" /></p>
+        <p>Ingrese pass: <input type="password" th:field="*{pass}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>

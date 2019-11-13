@@ -8,15 +8,24 @@ public class AdminCine {
 	
 	public void compraEntradas(){
 		int pelicula, edad, cantidad, pers, posF, posC, error=0, entradasT = 0;
+		int user;
 		for(int i=0; i<3; i++) {
 			salasButacas[i][0] = 20;
 			recaudacion[i] = 0;
 		}
 		Scanner sc = new Scanner(System.in);
 		
+		System.out.println("** CINE DAB **\n");
+		
+		do {
+			do {
+				System.out.print("** Ingrese tipo de usuario (user = 1) (root = 2) (salir = 3): ");
+				user = sc.nextInt();
+			}while(user != 1 && user != 2  && user != 3);
+		
+		if(user == 1) {
 		do {	
-			System.out.println("** CINE DAB **\n");
-			System.out.println("* PELICULAS DISPONIBLES:\t\t\t* PRECIOS:\n"
+			System.out.println("\n\n* PELICULAS DISPONIBLES:\t\t\t* PRECIOS:\n"
 				+ "\tPelicula 1. (15:30hs en Sala 1)\t\t\t NIÑO: $15.\n"
 				+ "\tPelicula 2. (18:45hs en Sala 2)\t\t\t ADULTO: $20.\n"
 				+ "\tPelicula 3. (22:00hs en Sala 3)\t\t\t +65 AÑOS $18.\n");
@@ -31,9 +40,10 @@ public class AdminCine {
 			}
 		
 			do{
-				System.out.print("\n* Ingrese pelicula a ver: (1,2,3): ");
-				pelicula = sc.nextInt();
-				
+				do {
+					System.out.print("\n* Ingrese pelicula a ver: (1,2,3): ");
+					pelicula = sc.nextInt();
+				}while(pelicula <1 || pelicula >3);
 				
 				System.out.println("* Esquema de la sala *");	
 				System.out.print("\n\t");
@@ -111,7 +121,6 @@ public class AdminCine {
 			do{
 				System.out.print("* Ingrese edad de la persona "+pers+": ");
 				edad = sc.nextInt();
-				System.out.print(cantidad);
 				cantidad--;
 				pers++;				
 				
@@ -163,10 +172,40 @@ public class AdminCine {
 		
 		if(entradasT == 60) System.out.println("\n* ERROR! TODAS LAS ENTRADAS AGOTADAS!.\n");
 		
-		System.out.println("Saliendo.\n");
-		for(int i=0; i<3; i++) {
-			System.out.println("** La Recaudacion total de la pelicula "+(i+1)+" fue de: $"+recaudacion[i]+" **");
 		}
+		if(user == 2) {
+			System.out.println();
+			
+			System.out.println("* Esquema de las salas *");	
+			System.out.print("\n");
+			for(int i=0; i<3; i++) {
+				System.out.print("Sala"+(i+1)+"\n\t");
+				for(int j=0; j<4; j++) {
+					for(int k=0; k<5; k++) {
+						System.out.print(butacas[i][j][k]+" ");
+					}
+					System.out.println();
+					System.out.print("\t");
+				}
+				System.out.println();
+			}
+			
+			for(int i=0; i<3; i++) {
+				System.out.println("** La Recaudacion total de la pelicula "+(i+1)+" fue de: $"+recaudacion[i]+" **");
+			}
+		}
+		
+		if(user != 3) {	
+			do {
+				if(salir != 0 && salir != 1 && user != 3) System.out.println("\n* OPCION INCORRECTA!\n");
+				System.out.print("\n* Desea cambiar de usuario: (si = 1) (no = 2): ");
+				salir = sc.nextInt();
+			}while(salir != 1 && salir != 2);
+		}
+		if(salir != 2 && user != 3)System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n");
+		}while(user != 3 && salir != 2);
+		
+		System.out.println("\nSaliendo.\n");
 		sc.close();
 	}
 }

@@ -13,6 +13,9 @@ public class VehiculoController {
 	@Autowired
 	public VehiculoService autoService;
 	
+	@Autowired
+	public ServiceApp serviceApp;
+	
     @GetMapping("/login")
     public String ingresoForm(Model model) {
         model.addAttribute("user", new User());
@@ -34,6 +37,7 @@ public class VehiculoController {
 
     @PostMapping("/login")
     public String ingresoSubmit(@ModelAttribute User user) {
+    	serviceApp.getVehicles();
         return autoService.verificarIngreso(user);
     }
     

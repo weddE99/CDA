@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Busqueda</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Buscar por</h1>
+<form action="#" th:action="@{/seat}" th:object="${airline}" method="post">
+
+    <table>
+        <tr>
+
+            <td><p>Airline: </p></td>
+            <td><input type="text" th:field="*{airlineNameShort}" /></td>
+        </tr>
+        <tr>
+            <td><p>Airline_Full:  </p></td>
+            <td><input type="text" th:field="*{airlineNameLong}" /></td>
+        </tr>
+        <tr>
+            <td><p>Basic Rate: </p></td>
+            <td><input type="text" th:field="*{basicRate}" /></td>
+        </tr>
+        <tr>
+            <td><p>Distance discount: </p></td>
+            <td> <input type="text" th:field="*{distanceDiscount}" /></td>
+        </tr>
+        <tr>
+            <td><p>Factor level business: </p></td>
+            <td><input type="text" th:field="*{businessLevelFactor}" /></td>
+        </tr>
+        <tr>
+            <td><p>First class lecel: </p></td>
+            <td> <input type="text" th:field="*{firstClassLevelFactor}" /></td>
+        </tr>
+        <tr>
+            <td><p>Economy Seat: </p></td>
+            <td> <input type="text" th:field="*{economySeat}" /></td>
+        </tr>
+        <tr>
+            <td><p>First class seat:  </p></td>
+            <td> <input type="text" th:field="*{firstClassSeat}" /></td>
+        </tr>
+    </table>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>
+</html>

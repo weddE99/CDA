@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Busqueda</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Buscar por Region</h1>
+<form action="#" th:action="@{/countries}" th:object="${country}" method="post">
+    <table>
+        <tr>
+            <td><p>Region: </p></td>
+            <td><input type="text" th:field="*{region}" /></td>
+        </tr>
+	</table>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>

@@ -6,7 +6,7 @@ public class Airline {
     Double basicRate;
     Double distanceDiscount;
     Double businessLevelFactor;
-    Double firstClassLEvelFactor;
+    Double firstClassLevelFactor;
     Integer economySeat;
     Integer firstClassSeat;
 
@@ -50,12 +50,12 @@ public class Airline {
         this.businessLevelFactor = businessLevelFactor;
     }
 
-    public Double getFirstClassLEvelFactor() {
-        return firstClassLEvelFactor;
+    public Double getFirstClassLevelFactor() {
+        return firstClassLevelFactor;
     }
 
-    public void setFirstClassLEvelFactor(Double firstClassLEvelFactor) {
-        this.firstClassLEvelFactor = firstClassLEvelFactor;
+    public void setFirstClassLevelFactor(Double firstClassLevelFactor) {
+        this.firstClassLevelFactor = firstClassLevelFactor;
     }
 
     public Integer getEconomySeat() {

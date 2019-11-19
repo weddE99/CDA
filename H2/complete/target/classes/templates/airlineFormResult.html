@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Busqueda</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Buscar por</h1>
+<form action="#" th:action="@{/seats}" th:object="${airline}" method="post">
+
+    <table>
+        <tr>
+            <td><p>Airline: </p></td>
+            <td><span th:text="${airline.airlineNameShort}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>Airline_Full:  </p></td>
+            <td><span th:text="${airline.airlineNameLong}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>Basic Rate: </p></td>
+            <td><span th:text="${airline.basicRate}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>Distance discount: </p></td>
+            <td><span th:text="${airline.distanceDiscount}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>Factor level business: </p></td>
+            <td><span th:text="${airline.businessLevelFactor}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>First class level: </p></td>
+            <td><span th:text="${airline.firstClassLevelFactor}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>Economy Seat: </p></td>
+            <td><span th:text="${airline.economySeat}"> Title </span></td>
+        </tr>
+        <tr>
+            <td><p>First class seat:  </p></td>
+            <td><span th:text="${airline.firstClassSeat}"> Title </span></td>
+        </tr>
+    </table>
+
+    <p>Para realizar otra busqueda haga click <a href="/seats">aqui</a></p>
+</form>
+</body>
+</html>

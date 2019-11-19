@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Busqueda</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Buscar por Horario</h1>
+<form action="#" th:action="@{/flights}" th:object="${flight}" method="post">
+    <table>
+        <tr>
+
+            <td><p>Desde: </p></td>
+            <td><input type="text" th:field="*{desde}" /></td>
+            <td><p>Hasta: </p></td>
+            <td><input type="text" th:field="*{hasta}" /></td>
+        </tr>
+	</table>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>

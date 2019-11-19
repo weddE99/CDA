@@ -1,3 +1,6 @@
+com\example\handlingformsubmission\service\ServiceApp.class
 com\example\handlingformsubmission\HandlingFormSubmissionApplication.class
-com\example\handlingformsubmission\Greeting.class
 com\example\handlingformsubmission\GreetingController.class
+com\example\handlingformsubmission\model\Airline.class
+com\example\handlingformsubmission\Greeting.class
+com\example\handlingformsubmission\Mappers\AirlinesRowMapper.class

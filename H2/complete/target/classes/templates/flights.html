@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de vuelos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<main role="main" class="container">
+    <div class="starter-template">
+<h1>Listado de Vuelos</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Numero Vuelo</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Origen Vuelo</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Horario de Salida</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Destino Vuelo</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Horario de Llegada</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Millas</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Avion</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="flight: ${flight}">
+        <td><span th:text="${flight.flightId}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${flight.origAirport}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${flight.departTime}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${flight.destAirport}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${flight.arriveTime}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${flight.miles}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${flight.aircraft}"> Title </span></td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+    <p>Para realizar otra busqueda haga click <a href="/flight">aqui</a></p>
+</main>
+</body>
+</html>

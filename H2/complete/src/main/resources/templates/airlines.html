@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Aerolineas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<main role="main" class="container">
+    <div class="starter-template">
+<h1>Listado de Aerolineas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nombre Corto</th>
+        <th>Nombre Largo</th>
+        <th>Promedio</th>
+        <th>Descuento distancia</th>
+        <th>Nivel Business</th>
+        <th>Nivel Primera Clase</th>
+        <th>Asientos Economicos</th>
+        <th>Asientos de Primera Clase</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="air: ${airlines}">
+        <td><span th:text="${air.airlineNameShort}"> Title </span></td>
+        <td><span th:text="${air.airlineNameLong}"> Title </span></td>
+        <td><span th:text="${air.basicRate}"> Title </span></td>
+        <td><span th:text="${air.distanceDiscount}"> Title </span></td>
+        <td><span th:text="${air.businessLevelFactor}"> Title </span></td>
+        <td><span th:text="${air.firstClassLevelFactor}"> Title </span></td>
+        <td><span th:text="${air.economySeat}"> Title </span></td>
+        <td><span th:text="${air.firstClassSeat}"> Title </span></td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+</main>
+</body>
+</html>
+

@@ -18,7 +18,7 @@ public class AirlinesRowMapper implements RowMapper<Airline> {
         airline.setBusinessLevelFactor(resultSet.getDouble("BUSINESS_LEVEL_FACTOR"));
         airline.setDistanceDiscount(resultSet.getDouble("DISTANCE_DISCOUNT"));
         airline.setEconomySeat(resultSet.getInt("ECONOMY_SEATS"));
-        airline.setFirstClassSeat(resultSet.getInt("ECONOMY_SEATS"));
+        airline.setFirstClassSeat(resultSet.getInt("FIRSTCLASS_SEATS"));
         return  airline;
     }
 }

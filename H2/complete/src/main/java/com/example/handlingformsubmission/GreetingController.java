@@ -1,6 +1,12 @@
 package com.example.handlingformsubmission;
 
+import com.example.handlingformsubmission.model.Airline;
+import com.example.handlingformsubmission.model.Country;
+import com.example.handlingformsubmission.model.Flight;
 import com.example.handlingformsubmission.service.ServiceApp;
+
+import java.sql.Time;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +19,48 @@ public class GreetingController {
 
     @Autowired
     ServiceApp serviceApp;
-
-    @GetMapping("/greeting")
-    public String greetingForm(Model model) {
-        model.addAttribute("greeting", new Greeting());
-        return "greeting";
+    
+    @GetMapping("/airlines")
+    public String airlinesForm(Model model) {
+        model.addAttribute("airlines", serviceApp.getAirlines().iterator());
+        return "airlines";
+    }
+    
+    @GetMapping("/country")
+    public String countriesForm(Model model){
+    	model.addAttribute("country", new Country());
+    	return "countriesForm";
     }
 
-    @PostMapping("/greeting")
-    public String greetingSubmit(@ModelAttribute Greeting greeting) {
-        serviceApp.getAirlines();
-        return "result";
+    @GetMapping("/seats")
+    public String airlinesSeats(Model model) {
+        model.addAttribute("airline", new Airline());
+        return "airlineForm";
+    }
+    
+    @GetMapping("/flight")
+    public String flightsSeats(Model model) {
+        model.addAttribute("flight", new Flight());
+        return "flightForm";
     }
 
+    @PostMapping("/seat")
+    public String seatSubmit(@ModelAttribute Airline airline) {
+        airline.setEconomySeat(serviceApp.getEconomySeatsFromAirlines(airline.getAirlineNameShort(),airline.getAirlineNameLong()));
+        airline.setFirstClassSeat(serviceApp.getFirstClassSeatsFromAirlines(airline.getAirlineNameShort(),airline.getAirlineNameLong()));
+        //airline.setFirstClassLevelFactor(serviceApp.getFirstClassLevelFromAirlines(airline.getAirlineNameShort(),airline.getAirlineNameLong()));
+        return "airlineFormResult";
+    }
+    
+    @PostMapping("/countries")
+    public String countriesSubmit(Model model, @ModelAttribute Country country) {
+    	model.addAttribute("country", serviceApp.getCountriesByContinents(country.getRegion()).iterator());
+    	return "countries";
+    }
+    
+    @PostMapping("/flights")
+    public String flightsSubmit(Model model, @ModelAttribute Flight flight, Time desde, Time hasta) {
+    	model.addAttribute("flight", serviceApp.getFlight(desde,hasta));
+    	return "flights";
+    }
 }

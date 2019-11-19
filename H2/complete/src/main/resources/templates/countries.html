@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de paises</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<main role="main" class="container">
+    <div class="starter-template">
+<h1>Listado de Paises</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nombre Pais</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Codigo Pais</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Continente  </th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="country: ${country}">
+        <td><span th:text="${country.country}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${country.countryIsoCode}"> Title </span></td>
+        <td><span>    </span></td>
+        <td><span th:text="${country.region}"> Title </span></td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+    <p>Para realizar otra busqueda haga click <a href="/country">aqui</a></p>
+</main>
+</body>
+</html>

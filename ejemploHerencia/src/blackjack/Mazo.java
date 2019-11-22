@@ -129,6 +129,11 @@ public class Mazo {
 		int valorManoJ = 0;
 		int valorManoC = 0;
 		
+		System.out.println("\n\n====================="+
+				   "===========");
+		System.out.println("\t  RESULTADOS");
+		System.out.println("====================="+
+				   "===========");
         System.out.println("Tus Cartas: ");
     	System.out.println("--------------------");
     	
@@ -161,6 +166,33 @@ public class Mazo {
     		System.out.println("\nHas perdido!! D:");
     	}
     	System.out.println("--------------------");
+    	System.out.println("====================="+
+				   "===========");
+	}
+	
+	public void mostrarCartas(Mazo m) {
+		System.out.println("====================="+
+				   "===========");
+		System.out.println("Tus Cartas: ");
+		System.out.println("--------------------");
+	
+		for(int i=0; i<m.jugador.length; i++) {
+			if(m.jugador[i] != null) System.out.println(m.jugador[i]);
+		}
+	
+		System.out.println("--------------------");
+		System.out.println("Cartas del crupier: ");
+		System.out.println("--------------------");
+		
+		for(int i=0; i<m.crupier.length; i++) {
+			if(m.crupier[i] != null) {
+				if(i == 0) System.out.println(m.crupier[i]);
+				else System.out.println("[ ?? ]");
+			}
+		}
+		System.out.println("--------------------");
+		System.out.println("====================="+
+				   "===========");
 	}
 	
 	public void ejecutarJuego(){
@@ -175,28 +207,7 @@ public class Mazo {
 			m.darCartas("c");
         
 			do {       
-				System.out.println("====================="+
-						   "===========");
-				System.out.println("Tus Cartas: ");
-				System.out.println("--------------------");
-        	
-				for(int i=0; i<m.jugador.length; i++) {
-					if(m.jugador[i] != null) System.out.println(m.jugador[i]);
-				}
-        	
-				System.out.println("--------------------");
-				System.out.println("Cartas del crupier: ");
-				System.out.println("--------------------");
-				
-				for(int i=0; i<m.crupier.length; i++) {
-					if(m.crupier[i] != null) {
-						if(i == 0) System.out.println(m.crupier[i]);
-						else System.out.println("[ ?? ]");
-					}
-				}
-				System.out.println("--------------------");
-				System.out.println("====================="+
-						   "===========");
+				mostrarCartas(m);
 				System.out.println("* Pedir Otra Carta (1)\n* Salir (2)");
 				System.out.print("Opcion: ");
 				rta = sc.nextInt();
@@ -219,14 +230,8 @@ public class Mazo {
 				}
 				
 			}while(rta != 2);
-			System.out.println("\n\n====================="+
-					   "===========");
-			System.out.println("\t  RESULTADOS");
-			System.out.println("====================="+
-					   "===========");
+
 			m.mostrarResultado();
-			System.out.println("====================="+
-					   "===========");
 
 			System.out.println("* Seguir jugando (1)\n* Salir (2)");
 			System.out.print("Opcion: ");

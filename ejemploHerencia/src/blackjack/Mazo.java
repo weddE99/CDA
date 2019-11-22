@@ -207,7 +207,6 @@ public class Mazo {
 					
 					for(int i=0; i<m.crupier.length; i++) {
 			    		if(m.crupier[i] != null) { 
-			    			System.out.println(m.crupier[i]);
 			    			valorManoC = sumadorValores(m.crupier[i],valorManoC);
 			    		}
 			    	}
@@ -233,9 +232,9 @@ public class Mazo {
 			System.out.print("Opcion: ");
 			rta = sc.nextInt();
         
-			if(rta == 2) {
+			if(rta == 1) {
 				System.out.println("\n====================="+
-						   "===========");
+						   "===========\n\n");
 			}
 			
 		}while(rta != 2);

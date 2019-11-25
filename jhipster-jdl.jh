@@ -7,10 +7,10 @@ entity Modelo{
 entity Equipo{
     tipoEquipo String,
     sistemaOperativo String,
-    fechaCompra Date,
-    inicioGarantia Date,
-    finGarantia Date,
-    seguro Char,
+    fechaCompra LocalDate,
+    inicioGarantia LocalDate,
+    finGarantia LocalDate,
+    seguro String
 }
 entity Sede{
     pais String,

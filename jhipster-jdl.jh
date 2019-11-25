@@ -1,0 +1,45 @@
+entity Fabricante{
+    nombre String
+}
+entity Modelo{
+    tipoModelo String
+}
+entity Equipo{
+    tipoEquipo String,
+    sistemaOperativo String,
+    fechaCompra Date,
+    inicioGarantia Date,
+    finGarantia Date,
+    seguro Char,
+}
+entity Sede{
+    pais String,
+    localidad String,
+    alias String,
+    piso Integer
+}
+entity Usuario{
+    nombre String,
+    apellido String,
+    dni Long,
+    cargo String,
+}
+
+relationship OneToMany {
+    Fabricante{modelo} to Modelo
+}
+
+relationship ManyToOne{
+    Equipo{fabricante} to Fabricante,
+    Equipo{sede} to Sede,
+    Usuario{sede} to Sede
+}
+
+relationship ManyToMany{
+    Usuario{equipo} to Equipo{usuario}
+}
+
+paginate Usuario, Equipo, Sede, 
+Fabricante, Modelo with pagination
+
+service all with serviceImpl

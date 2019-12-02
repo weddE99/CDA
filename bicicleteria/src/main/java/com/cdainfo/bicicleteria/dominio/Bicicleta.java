@@ -18,7 +18,7 @@ public class Bicicleta {
     private String modelo;
 
     @Column(name = "rodado")
-    private int rodado;
+    private Integer rodado;
     
     @Column(name = "precio")
     private double precio;
@@ -41,10 +41,10 @@ public class Bicicleta {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public int getRodado() {
+	public Integer getRodado() {
 		return rodado;
 	}
-	public void setRodado(int rodado) {
+	public void setRodado(Integer rodado) {
 		this.rodado = rodado;
 	}
 	public double getPrecio() {

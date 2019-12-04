@@ -1,0 +1,14 @@
+INSERT INTO impuesto VALUES (1111,'2010-10-10','Impuesto a las Ganancias'),
+(2222,'2010-10-10','Impuesto al Valor Agregado (IVA)'),
+(3333,'2010-10-10','Impuesto a la Ganancia Minima Presunta'),
+(4444,'2010-10-10','Impuesto a los Bienes Personales'),
+(5555,'2010-10-10','Impuesto sobre los Debitos y creditos Bancarios'),
+(6666,'2010-10-10','Impuesto sobre los Ingresos Brutos'),
+(7777,'2010-10-10','Impuesto al Sello'),
+(8888,'2010-10-10','Impuesto a la Transferencia de Inmuebles');
+
+INSERT INTO contribuyente VALUES (11111111,'Palacios','Alfredo'),
+(22222222,'Benites','Angie'),
+(33333333,'Askiara','Lucas'),
+(44444444,'Dabrowski','Wilson'),
+(55555555,'Frank','Emanuel');

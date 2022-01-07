@@ -33,7 +33,7 @@
         <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.193</version><!--$NO-MVN-MAN-VER$-->
+			<version>2.0.206</version><!--$NO-MVN-MAN-VER$-->
 			<scope>runtime</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
